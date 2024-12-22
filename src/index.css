@@ -1,0 +1,24 @@
+.App {
+  text-align: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  color: white;
+  padding: 20px;
+}
+
+.App h1 {
+  margin-bottom: 40px;
+  font-size: 2.5em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Override some global styles for the game context */
+button {
+  font-family: 'Arial', sans-serif;
+}
+
+input {
+  font-family: 'Arial', sans-serif;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
