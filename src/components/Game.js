@@ -75,7 +75,7 @@ const Game = () => {
   const renderWord = () => {
     return currentWord.split('').map((letter, index) => (
       <span key={index} className="letter">
-        {guessedLetters.has(letter.toLowerCase()) ? letter : '_'}
+        {guessedLetters.includes(letter.toLowerCase()) ? letter : '_'}
       </span>
     ));
   };
@@ -88,7 +88,7 @@ const Game = () => {
           <button
             key={letter}
             onClick={() => handleLetterClick(letter.toLowerCase())}
-            disabled={guessedLetters.has(letter.toLowerCase())}
+            disabled={guessedLetters.includes(letter.toLowerCase())}
             className="letter-button"
           >
             {letter}

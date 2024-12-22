@@ -7,7 +7,7 @@ const initialState = {
   timeLimit: 20,
   currentRound: 1,
   currentWord: '',
-  guessedLetters: new Set(),
+  guessedLetters: [],
   remainingLives: 5,
   score: {
     player1: 0,
@@ -35,7 +35,9 @@ const gameSlice = createSlice({
     },
     guessLetter: (state, action) => {
       const letter = action.payload;
-      state.guessedLetters.add(letter);
+      if (!state.guessedLetters.includes(letter)) {
+        state.guessedLetters.push(letter);
+      }
       if (!state.currentWord.includes(letter)) {
         state.remainingLives--;
       }
