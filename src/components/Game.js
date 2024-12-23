@@ -71,10 +71,6 @@ const Game = () => {
     e.preventDefault();
     const lowercaseGuess = guess.toLowerCase();
     dispatch(guessWord(lowercaseGuess));
-    if (lowercaseGuess === currentWord) {
-      console.log("Correct! Word is " + currentWord);
-      dispatch(nextRound());
-    }
     setGuess('');
   };
 

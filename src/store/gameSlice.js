@@ -40,11 +40,30 @@ const gameSlice = createSlice({
       }
       if (!state.currentWord.toLowerCase().includes(letter.toLowerCase())){
           state.remainingLives--;
+          if(state.remainingLives == 0) {
+            state.gameStatus = 'gameOver';
+            gameSlice.caseReducers.resetGame(state);
+          }
+      } else {
+          const uniqueChars = [...new Set(state.currentWord.toLowerCase())];
+          const isComplete = uniqueChars.every(char => 
+          state.guessedLetters.some(l => l.toLowerCase() === char)
+          );
+          if (isComplete) {
+            const currentPlayerKey = `player${state.currentPlayer}`;
+          state.score[currentPlayerKey] += state.remainingLives * 10;
+          state.gameStatus = 'roundEnd';
+          gameSlice.caseReducers.nextRound(state);
+        }
       }
     },
     guessWord: (state, action) => {
       if (action.payload.toLowerCase() !== state.currentWord.toLowerCase()) {
         state.remainingLives--;
+        if(state.remainingLives == 0) {
+          state.gameStatus = 'gameOver';
+          gameSlice.caseReducers.resetGame(state);
+        }
       }
       else if (action.payload.toLowerCase() == state.currentWord.toLowerCase()){
         const currentPlayerKey = `player${state.currentPlayer}`;
