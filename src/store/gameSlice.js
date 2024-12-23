@@ -15,7 +15,7 @@ const initialState = {
   },
   currentPlayer: 1,
   wordList: [],
-  gameStatus: 'setup' // setup, playing, roundEnd, gameEnd
+  gameStatus: 'setup' // setup, playing, roundEnd, gameEnd, gameOver
 };
 
 const gameSlice = createSlice({
@@ -38,22 +38,25 @@ const gameSlice = createSlice({
       if (!state.guessedLetters.includes(letter)) {
         state.guessedLetters.push(letter);
       }
-      if (!state.currentWord.includes(letter)) {
-        state.remainingLives--;
+      if (!state.currentWord.toLowerCase().includes(letter.toLowerCase())){
+          state.remainingLives--;
       }
     },
     guessWord: (state, action) => {
-      if (action.payload !== state.currentWord) {
+      if (action.payload.toLowerCase() !== state.currentWord.toLowerCase()) {
         state.remainingLives--;
-      } else {
+      }
+      else if (action.payload.toLowerCase() == state.currentWord.toLowerCase()){
         const currentPlayerKey = `player${state.currentPlayer}`;
         state.score[currentPlayerKey] += state.remainingLives * 10;
+        state.gameStatus = 'roundEnd';
+        gameSlice.caseReducers.nextRound(state);
       }
     },
     nextRound: (state) => {
       state.currentRound++;
       state.currentWord = state.wordList[state.currentRound - 1];
-      state.guessedLetters = new Set();
+      state.guessedLetters = [];
       state.remainingLives = 5;
       if (state.gameMode === 'two') {
         state.currentPlayer = state.currentPlayer === 1 ? 2 : 1;

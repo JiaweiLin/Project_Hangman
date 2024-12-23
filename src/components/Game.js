@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import GameOver from './GameOver.js';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { generateWordList } from '../services/bedrockService.js';
@@ -68,7 +69,12 @@ const Game = () => {
 
   const handleWordGuess = (e) => {
     e.preventDefault();
-    dispatch(guessWord(guess.toLowerCase()));
+    const lowercaseGuess = guess.toLowerCase();
+    dispatch(guessWord(lowercaseGuess));
+    if (lowercaseGuess === currentWord) {
+      console.log("Correct! Word is " + currentWord);
+      dispatch(nextRound());
+    }
     setGuess('');
   };
 
