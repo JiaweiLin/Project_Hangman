@@ -15,6 +15,8 @@ const GameOver = () => {
       <p>Player 1: {score.player1}</p>
       <p>Player 2: {score.player2}</p>
       <button onClick={() => dispatch(resetGame())}>Play Again</button>
+      <p></p>
+      <button onClick={() => window.location.href = "/"}>Exit to main page</button>
     </div>
   );
 };
