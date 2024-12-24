@@ -65,6 +65,9 @@ const Game = () => {
 
   const handleLetterClick = (letter) => {
     dispatch(guessLetter(letter));
+    if (remainingLives === 0) {
+      return <GameOver />;
+    }
   };
 
   const handleWordGuess = (e) => {
@@ -72,6 +75,9 @@ const Game = () => {
     const lowercaseGuess = guess.toLowerCase();
     dispatch(guessWord(lowercaseGuess));
     setGuess('');
+    if (remainingLives === 0) {
+      return <GameOver />;
+    }
   };
 
   const renderWord = () => {
