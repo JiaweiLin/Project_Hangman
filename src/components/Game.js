@@ -131,6 +131,8 @@ const Game = () => {
           placeholder="Guess the whole word..."
         />
         <button type="submit">Guess</button>
+        <p></p>
+        <button onClick={() => window.location.href = "/"}>Exit to main page</button>
       </form>
     </div>
   );
