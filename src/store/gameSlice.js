@@ -42,7 +42,6 @@ const gameSlice = createSlice({
           state.remainingLives--;
           if(state.remainingLives == 0) {
             state.gameStatus = 'gameOver';
-            gameSlice.caseReducers.resetGame(state);
           }
       } else {
           const uniqueChars = [...new Set(state.currentWord.toLowerCase())];
@@ -62,7 +61,6 @@ const gameSlice = createSlice({
         state.remainingLives--;
         if(state.remainingLives == 0) {
           state.gameStatus = 'gameOver';
-          gameSlice.caseReducers.resetGame(state);
         }
       }
       else if (action.payload.toLowerCase() == state.currentWord.toLowerCase()){
@@ -81,7 +79,13 @@ const gameSlice = createSlice({
         state.currentPlayer = state.currentPlayer === 1 ? 2 : 1;
       }
     },
-    resetGame: () => initialState
+    resetGame: (state) => {
+      const savedWordList = [...state.wordList];
+      Object.assign(state, initialState);
+      state.wordList = savedWordList;
+      state.currentWord = savedWordList[0];
+      state.gameStatus = 'playing';
+    }
   }
 });
 
