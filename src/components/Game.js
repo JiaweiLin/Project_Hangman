@@ -59,7 +59,7 @@ const Game = () => {
 
       return () => clearInterval(countdown);
     }
-  }, [currentWord, currentPlayer]);
+  }, [currentWord, currentPlayer, guessedLetters]);
 
   const handleTimeUp = () => {
     dispatch(setGameOver());
