@@ -81,9 +81,11 @@ const gameSlice = createSlice({
     },
     resetGame: (state) => {
       const savedWordList = [...state.wordList];
+      const savedGameMode = state.gameMode;
       Object.assign(state, initialState);
       state.wordList = savedWordList;
       state.currentWord = savedWordList[0];
+      state.gameMode = savedGameMode;
       state.gameStatus = 'playing';
     }
   }
