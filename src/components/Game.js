@@ -108,7 +108,7 @@ const Game = () => {
   return (
     <div className="game">
       <div className="game-info">
-        <div>Round: {currentRound}/5</div>
+        <div>Round: {currentRound}/6</div>
         <div>Lives: {'❤️'.repeat(remainingLives)}</div>
         {gameMode === 'two' && (
           <>

@@ -58,7 +58,7 @@ const GameSetup = () => {
         </div>
 
         <div className="form-group">
-          <label>Time Limit (seconds):</label>
+          <label>Time Limit for 2-player game (seconds):</label>
           <select value={timeLimit} onChange={(e) => setTimeLimit(parseInt(e.target.value))}>
             <option value={20}>20</option>
             <option value={25}>25</option>

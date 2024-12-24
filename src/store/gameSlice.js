@@ -8,7 +8,7 @@ const initialState = {
   currentRound: 1,
   currentWord: '',
   guessedLetters: [],
-  remainingLives: 5,
+  remainingLives: 6,
   score: {
     player1: 0,
     player2: 0
@@ -74,7 +74,7 @@ const gameSlice = createSlice({
       state.currentRound++;
       state.currentWord = state.wordList[state.currentRound - 1];
       state.guessedLetters = [];
-      state.remainingLives = 5;
+      state.remainingLives = 6;
       if (state.gameMode === 'two') {
         state.currentPlayer = state.currentPlayer === 1 ? 2 : 1;
       }
