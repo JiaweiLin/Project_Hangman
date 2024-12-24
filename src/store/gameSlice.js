@@ -50,10 +50,14 @@ const gameSlice = createSlice({
           );
           if (isComplete) {
             const currentPlayerKey = `player${state.currentPlayer}`;
-          state.score[currentPlayerKey] += state.remainingLives * 10;
-          state.gameStatus = 'roundEnd';
-          gameSlice.caseReducers.nextRound(state);
-        }
+            state.score[currentPlayerKey] += state.remainingLives * 10;
+            if (state.currentRound >= 6) {
+              state.gameStatus = 'gameOver';
+            } else {
+              state.gameStatus = 'roundEnd';
+              gameSlice.caseReducers.nextRound(state);
+            }
+          }
       }
     },
     guessWord: (state, action) => {
@@ -66,11 +70,19 @@ const gameSlice = createSlice({
       else if (action.payload.toLowerCase() == state.currentWord.toLowerCase()){
         const currentPlayerKey = `player${state.currentPlayer}`;
         state.score[currentPlayerKey] += state.remainingLives * 10;
-        state.gameStatus = 'roundEnd';
-        gameSlice.caseReducers.nextRound(state);
+        if (state.currentRound >= 6) {
+          state.gameStatus = 'gameOver';
+        } else {
+          state.gameStatus = 'roundEnd';
+          gameSlice.caseReducers.nextRound(state);
+        }
       }
     },
     nextRound: (state) => {
+      if (state.currentRound >= 6) {
+        state.gameStatus = 'gameOver';
+        return;
+      }
       state.currentRound++;
       state.currentWord = state.wordList[state.currentRound - 1];
       state.guessedLetters = [];
