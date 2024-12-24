@@ -30,6 +30,7 @@ const Game = () => {
     score,
     currentPlayer,
     wordList,
+    gameStatus,
   } = useSelector((state) => state.game);
 
   useEffect(() => {
@@ -65,9 +66,6 @@ const Game = () => {
 
   const handleLetterClick = (letter) => {
     dispatch(guessLetter(letter));
-    if (remainingLives === 0) {
-      return <GameOver />;
-    }
   };
 
   const handleWordGuess = (e) => {
@@ -75,9 +73,6 @@ const Game = () => {
     const lowercaseGuess = guess.toLowerCase();
     dispatch(guessWord(lowercaseGuess));
     setGuess('');
-    if (remainingLives === 0) {
-      return <GameOver />;
-    }
   };
 
   const renderWord = () => {
@@ -105,6 +100,10 @@ const Game = () => {
       </div>
     );
   };
+
+  if (gameStatus === 'gameOver') {
+    return <GameOver />;
+  }
 
   return (
     <div className="game">
