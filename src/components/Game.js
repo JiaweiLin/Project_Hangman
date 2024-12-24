@@ -8,7 +8,8 @@ import {
   guessLetter, 
   guessWord, 
   nextRound, 
-  resetGame 
+  resetGame,
+  setGameOver 
 } from '../store/gameSlice.js';
 import '../styles/Game.css';
 
@@ -61,7 +62,7 @@ const Game = () => {
   }, [currentWord, currentPlayer]);
 
   const handleTimeUp = () => {
-    dispatch(nextRound());
+    dispatch(setGameOver());
   };
 
   const handleLetterClick = (letter) => {

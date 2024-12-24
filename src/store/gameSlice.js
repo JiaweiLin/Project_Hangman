@@ -87,6 +87,9 @@ const gameSlice = createSlice({
       state.currentWord = savedWordList[0];
       state.gameMode = savedGameMode;
       state.gameStatus = 'playing';
+    },
+    setGameOver: (state) => {
+      state.gameStatus = 'gameOver';
     }
   }
 });
@@ -97,7 +100,8 @@ export const {
   guessLetter,
   guessWord,
   nextRound,
-  resetGame
+  resetGame,
+  setGameOver
 } = gameSlice.actions;
 
 export default gameSlice.reducer;
