@@ -4,8 +4,8 @@ import { BedrockRuntimeClient, InvokeModelCommand } from "@aws-sdk/client-bedroc
 // Initialize the Bedrock client
 const bedrockClient = new BedrockRuntimeClient({
     credentials: {
-        accessKeyId: '',
-        secretAccessKey: ''
+        accessKeyId: process.env.REACT_APP_API_KEY,
+        secretAccessKey: process.env.REACT_APP_ACCESS_KEY
       },
     region: "ap-southeast-1" // Replace with your preferred region
 });
@@ -16,10 +16,10 @@ const bedrockClient = new BedrockRuntimeClient({
  * @returns {Promise<string[]>} Array of generated words
  */
 export async function generateWordList(category, difficultySelect) {
-    const prompt = `Generate 5 unique, single-word ${category} that would be good for a game of Hangman. 
+    const prompt = `Generate 6 unique, single-word ${category} that would be good for a game of Hangman. 
         The words should be of difficulty ${difficultySelect}. 
         Format the response as a JSON array of uppercase strings.
-        For example: ["WORD1", "WORD2", "WORD3", "WORD4", "WORD5"]`;
+        For example: ["WORD1", "WORD2", "WORD3", "WORD4", "WORD5", "WORD6"]`;
 
     const params = {
         modelId: "apac.anthropic.claude-3-sonnet-20240229-v1:0",
@@ -58,7 +58,7 @@ export async function generateWordList(category, difficultySelect) {
         let words = JSON.parse(arrayMatch[0]);
         
         // Validate the response
-        if (!Array.isArray(words) || words.length !== 5) {
+        if (!Array.isArray(words) || words.length !== 6) {
             throw new Error("Invalid response format from Bedrock");
         }
         
