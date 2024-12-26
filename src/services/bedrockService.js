@@ -1,11 +1,12 @@
 // Import required AWS SDK modules
 import { BedrockRuntimeClient, InvokeModelCommand } from "@aws-sdk/client-bedrock-runtime";
+import { secret } from '@aws-amplify/backend';
 
 // Initialize the Bedrock client
 const bedrockClient = new BedrockRuntimeClient({
     credentials: {
-        accessKeyId: process.env.REACT_APP_API_KEY,
-        secretAccessKey: process.env.REACT_APP_ACCESS_KEY
+        accessKeyId: secret('REACT_APP_API_KEY'),
+        secretAccessKey: secret('REACT_APP_ACCESS_KEY')
       },
     region: "ap-southeast-1" // Replace with your preferred region
 });
