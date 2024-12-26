@@ -28,13 +28,15 @@
 .letter-button {
   padding: 10px;
   font-size: 18px;
+  background-color: #f0f0f0;
+  color: #333;
   border: 1px solid #ccc;
-  background-color: #fff;
   cursor: pointer;
 }
 
 .letter-button:disabled {
-  background-color: #ddd;
+  background-color: #242526;
+  color: #888;
   cursor: not-allowed;
 }
 
