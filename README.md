@@ -1,1 +1,1 @@
-# Project_Hangman
+This is a ReactJS game that was built using Amazon Q Developer. This application integrates with Amazon Bedrock and is hosted on AWS Amplify. I created this game to participate in the AWS Game Builder Challenge 2024.
