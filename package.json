@@ -4,6 +4,7 @@
   "type": "module",
   "private": true,
   "dependencies": {
+    "@aws-amplify/backend": "^0.x",
     "@aws-sdk/client-bedrock-runtime": "^3.x",
     "@reduxjs/toolkit": "^1.x",
     "react": "^18.x",
